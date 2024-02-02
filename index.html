@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <title>EmojiGrab</title>
+  <link rel="icon" type="image/png" href="images/site_icon.png"> <!--Icon made by Twemoji-->
+  <style>
+    body {
+      font-size: 24px;
+      text-align: center;
+    }
+    
+    .emoji {
+      display: inline-block;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function copyEmoji(emoji) {
+      const el = document.createElement('textarea');
+      el.value = emoji;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert('Emoji copied to clipboard: ' + emoji);
+    }
+    
+    function generateEmojiList() {
+      const emojiList = [
+        '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '😴', '🤤', '😪', '😵', '🤐', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '👐', '🙌', '👏', '🤝', '👍', '👎', '👊', '✊', '🤛', '🤜', '🤞', '✌️', '🤟', '🤘', '👌', '👈', '👉', '👆', '👇', '☝️', '✋', '🤚', '🖐️', '🖖', '👋', '🤙', '💪', '🖕', '✍️', '🙏', '💍', '💄', '💋', '👄', '👅', '👂', '👃', '👣', '👁️', '👀', '🧠', '🗣️'
+        // Add more emojis here
+      ];
+      
+      const emojiContainer = document.getElementById('emoji-container');
+      
+      emojiList.forEach(emoji => {
+        const emojiElement = document.createElement('div');
+        emojiElement.className = 'emoji';
+        emojiElement.textContent = emoji;
+        emojiElement.addEventListener('click', () => copyEmoji(emoji));
+        emojiContainer.appendChild(emojiElement);
+      });
+    }
+  </script>
+</head>
+<body onload="generateEmojiList()">
+  <h1>EmojiGrab</h1>
+  <p><small>Copy an emoji to your clipboard by clicking on it. Then go to where you want to send it and press Ctrl+F (or ⌘+F if you're on mac)</small></p>
+  
+  <div id="emoji-container"></div>
+</body>
+</html>
